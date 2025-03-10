@@ -1,3 +1,3 @@
-export const InputError = ({ Text }) => {
-  return <p className="text-[14px] text-[#E14942]">{Text}</p>;
+export const InputError = ({ ErrorText }) => {
+  return <p className="text-[14px] text-[#E14942]">{ErrorText}</p>;
 };

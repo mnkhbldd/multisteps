@@ -19,7 +19,11 @@ export const Container = () => {
           </div>
           {/* Header Finished*/}
           <div className="flex flex-col gap-3">
-            <CustomInput Title="First name" Types="email" />
+            <CustomInput
+              Title="First name"
+              Types="email"
+              ErrorText="First name cannot contain special characteres or numbers."
+            />
             <CustomInput Title="Last name" Types="text" />
             <CustomInput Title="Username" Types="text" />
           </div>
