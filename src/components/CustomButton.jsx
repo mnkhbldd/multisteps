@@ -22,7 +22,7 @@ export const CustomButton = ({ First }) => {
           Back
         </button>
       </div>
-      <button className="w-[392px] px-3 py-[10px] bg-black rounded-[6px]">
+      <button className="w-full px-3 py-[10px] bg-black rounded-[6px]">
         Continue 1/3
       </button>
     </div>

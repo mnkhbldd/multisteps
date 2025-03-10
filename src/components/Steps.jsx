@@ -2,7 +2,7 @@ import { CustomInput } from ".";
 
 export const FirstStep = () => {
   return (
-    <div className="flex flex-col gap-3 pb-[54px]">
+    <div className="flex flex-col gap-3">
       <CustomInput
         Title="First name"
         Types="text"
@@ -24,7 +24,7 @@ export const FirstStep = () => {
 
 export const SecondStep = () => {
   return (
-    <div className="flex flex-col gap-3 pb-[54px]">
+    <div className="flex flex-col gap-3">
       <CustomInput
         Title="Email"
         Types="email"

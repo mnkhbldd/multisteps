@@ -7,11 +7,25 @@ export const CustomInput = ({ Title, Types, ErrorText }) => {
         {Title} <span className="text-[#E14942]">*</span>
       </p>
 
-      <input
-        type={Types}
-        placeholder={Title}
-        className="p-3 border border-[#8B8E95] rounded-[8px] w-[392px] outline-none focus-visible:border-[#0CA5E9] text-black"
-      ></input>
+      <div
+        className="p-3  border 
+          border-[#8B8E95] 
+          rounded-[8px]  
+          focus-visible:border-[#0CA5E9] "
+      >
+        <input
+          type={Types}
+          placeholder={Title}
+          className="
+          focus-visible:border-[#0CA5E9] 
+          outline-none
+          text-black 
+          text-[16px]
+          h-[20px]
+          w-full
+        "
+        />
+      </div>
       <InputError ErrorText={ErrorText} />
     </div>
   );

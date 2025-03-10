@@ -20,6 +20,7 @@ export const Container = () => {
           </div>
           {/* Header Finished*/}
           <FirstStep />
+          {/* <SecondStep /> */}
         </div>
         <CustomButton First={true} />
       </div>
