@@ -1,10 +1,11 @@
 import { CustomInput, CustomButton } from ".";
+import { FirstStep, SecondStep } from "./Steps";
 
 export const Container = () => {
   return (
     <div>
       {/* Container  */}
-      <div className="w-[480px] h-[655px]  bg-white flex flex-col justify-between p-8 rounded-[8px]">
+      <div className="w-[480px] min-h-[655px] h-fit  bg-white flex flex-col justify-between p-8 rounded-[8px]">
         <div className="flex flex-col gap-7">
           {/* Header */}
           <div className="flex flex-col gap-2">
@@ -18,17 +19,9 @@ export const Container = () => {
             </p>
           </div>
           {/* Header Finished*/}
-          <div className="flex flex-col gap-3">
-            <CustomInput
-              Title="First name"
-              Types="email"
-              ErrorText="First name cannot contain special characteres or numbers."
-            />
-            <CustomInput Title="Last name" Types="text" />
-            <CustomInput Title="Username" Types="text" />
-          </div>
+          <FirstStep />
         </div>
-        <CustomButton />
+        <CustomButton First={true} />
       </div>
       {/* Container finished */}
     </div>
