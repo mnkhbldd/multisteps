@@ -1,10 +1,11 @@
 // import { FirstStep } from "./Steps";
 
-export const CustomButton = ({ First }) => {
+export const CustomButton = ({ handleForward, handleBackward, count }) => {
   return (
     <div className="flex items-center gap-2 ">
-      <div className={`${First ? "hidden" : "flex"}`}>
+      <div className={`${count == 1 ? "hidden" : "flex"}`}>
         <button
+          onClick={handleBackward}
           className={`flex text-black w-[102px] border border-[#CBD5E1] px-3 py-2.5 rounded-[6px]`}
         >
           <svg
@@ -22,8 +23,11 @@ export const CustomButton = ({ First }) => {
           Back
         </button>
       </div>
-      <button className="w-full px-3 py-[10px] bg-black rounded-[6px]">
-        Continue 1/3
+      <button
+        onClick={handleForward}
+        className="w-full px-3 py-[10px] bg-black rounded-[6px] cursor-pointer"
+      >
+        Continue {count}/3
       </button>
     </div>
   );

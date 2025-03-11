@@ -1,7 +1,33 @@
+"use client";
+import { useState } from "react";
 import { CustomInput, CustomButton } from ".";
-import { FirstStep, SecondStep } from "./Steps";
+import { FirstStep, SecondStep, ThirdStep } from "./Steps";
+import { handleOnClick, initialFormValues } from "@/utils/functions";
 
 export const Container = () => {
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const [errorValues, setErrorValues] = useState();
+  const [isError, setIsError] = useState("false");
+  const [count, setCount] = useState(1);
+
+  const handleOnChange = (event) => {
+    const { name, value } = event.target;
+    setFormValues((previousValues) => ({ ...previousValues, [name]: value }));
+    // console.log(formValues);
+  };
+
+  const handleForward = () => {
+    if (count < 3) {
+      setCount(count + 1);
+    }
+  };
+
+  const handleBackward = () => {
+    if (count < 4) {
+      setCount(count - 1);
+    }
+  };
+
   return (
     <div>
       {/* Container  */}
@@ -13,16 +39,29 @@ export const Container = () => {
               className="size-[60px]"
               src="https://s3-alpha-sig.figma.com/img/48cb/cd1f/b0c85cb83db9b8c1218a4675117f8e3f?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=P56abisAjYWn71XaGqmRWlnKFcN8M2iqLDDTxrmR8mzc9dwpv2v6E5N5ub4qucjg-FkxCQg~eRoszo0dXOOBzj53X4SoZcpEc-qbVuSKrJSWqilaEH0tyXSa2HOcHaJkxvgqoDC5Xz5tCJVVmFtXidp9yb04fXcAb49HdLTFX~5QGAjbw2K4QV5-TxTMjdtwwkphZVHHnCirGIcd4kJeJ0yajlPl2xgdPPx8gQGJNOzR-N3qniqfAwW3~GebluL1Lk~AkhbV7-k3ixFuUfVOQpdGxk6HPZTp1sPIP8m2p5UgK07RUtP7e0vh-7X6vWPUW9dgzx5m8bNiKqvmaww2tA__"
             ></img>
-            <p className="text-[26px] text-black font-semibold ">Join Us! 😎</p>
-            <p className="text-[18px] text-[#8E8E8E] font-normal">
+            <p className="text-[26px] text-black font-semibold m-0">
+              Join Us! 😎
+            </p>
+            <p className="text-[18px] text-[#8E8E8E] font-normal m-0">
               Please provide all current information accurately
             </p>
           </div>
           {/* Header Finished*/}
-          <FirstStep />
-          {/* <SecondStep /> */}
+          {count === 1 ? (
+            <FirstStep handleOnChange={handleOnChange} isError={isError} />
+          ) : count === 2 ? (
+            <SecondStep />
+          ) : count === 3 ? (
+            <ThirdStep />
+          ) : (
+            <div></div>
+          )}
         </div>
-        <CustomButton First={true} />
+        <CustomButton
+          handleForward={handleForward}
+          handleBackward={handleBackward}
+          count={count}
+        />
       </div>
       {/* Container finished */}
     </div>
