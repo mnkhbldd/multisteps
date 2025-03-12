@@ -6,8 +6,8 @@ import { handleOnClick, initialFormValues } from "@/utils/functions";
 
 export const Container = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
-  const [errorValues, setErrorValues] = useState();
-  const [isError, setIsError] = useState("false");
+  // const [errorValues, setErrorValues] = useState();
+  const [isError, setIsError] = useState(false); // Changed from "true" to true
   const [count, setCount] = useState(0);
 
   const CurrentSteps = [FirstStep, SecondStep, ThirdStep][count];
@@ -15,13 +15,26 @@ export const Container = () => {
   const handleOnChange = (event) => {
     const { name, value } = event.target;
     setFormValues((previousValues) => ({ ...previousValues, [name]: value }));
-    // console.log(formValues);
   };
+
+  console.log(formValues);
 
   const handleForward = () => {
     if (count >= 2) {
       return;
     }
+
+    if (
+      formValues.firstName === "" ||
+      formValues.lastName === "" ||
+      formValues.userName === ""
+    ) {
+      setIsError(true);
+      console.log("error");
+      return;
+    }
+
+    setIsError(false);
     setCount(count + 1);
   };
 

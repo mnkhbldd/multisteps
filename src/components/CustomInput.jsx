@@ -37,7 +37,7 @@ export const CustomInput = ({
         ` + className
         }
       />
-      <InputError ErrorText={ErrorText} />
+      {isError ? <InputError ErrorText={ErrorText} /> : null}
     </div>
   );
 };
