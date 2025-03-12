@@ -8,7 +8,9 @@ export const Container = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [errorValues, setErrorValues] = useState();
   const [isError, setIsError] = useState("false");
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(0);
+
+  const CurrentSteps = [FirstStep, SecondStep, ThirdStep][count];
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -17,13 +19,14 @@ export const Container = () => {
   };
 
   const handleForward = () => {
-    if (count < 3) {
-      setCount(count + 1);
+    if (count >= 2) {
+      return;
     }
+    setCount(count + 1);
   };
 
   const handleBackward = () => {
-    if (count < 4) {
+    if (count > 0) {
       setCount(count - 1);
     }
   };
@@ -47,15 +50,7 @@ export const Container = () => {
             </p>
           </div>
           {/* Header Finished*/}
-          {count === 1 ? (
-            <FirstStep handleOnChange={handleOnChange} isError={isError} />
-          ) : count === 2 ? (
-            <SecondStep />
-          ) : count === 3 ? (
-            <ThirdStep />
-          ) : (
-            <div></div>
-          )}
+          <CurrentSteps handleOnChange={handleOnChange} isError={isError} />
         </div>
         <CustomButton
           handleForward={handleForward}

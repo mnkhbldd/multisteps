@@ -3,7 +3,7 @@
 export const CustomButton = ({ handleForward, handleBackward, count }) => {
   return (
     <div className="flex items-center gap-2 ">
-      <div className={`${count == 1 ? "hidden" : "flex"}`}>
+      <div className={`${count == 0 ? "hidden" : "flex"}`}>
         <button
           onClick={handleBackward}
           className={`flex text-black w-[102px] border border-[#CBD5E1] px-3 py-2.5 rounded-[6px]`}

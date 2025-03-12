@@ -4,33 +4,34 @@ import { InputError } from "./InputError";
 
 export const FirstStep = ({ handleOnChange, isError }) => {
   return (
-    <div className="flex flex-col gap-3">
-      <CustomInput
-        Title="First name"
-        Id="firsname"
-        name="firstName"
-        Types="text"
-        isError={isError}
-        handleOnChange={handleOnChange}
-        ErrorText="First name cannot contain special characteres or numbers."
-      />
-      <CustomInput
-        Title="Last name"
-        Id="lastname"
-        Types="text"
-        name="lastName"
-        handleOnChange={handleOnChange}
-        ErrorText="Last name cannot contain special characteres or numbers."
-      />
-      <CustomInput
-        Title="Nickname"
-        Id="nickname"
-        Types="text"
-        name="userName"
-        handleOnChange={handleOnChange}
-        ErrorText="Nickname cannot contain special characteres or numbers."
-      />
-    </div>
+    <form className="flex flex-col gap-3">
+      <div>
+        <CustomInput
+          Title="First name"
+          Id="firstname"
+          Types="text"
+          ErrorText="First name cannot be blank."
+          handleOnChange={handleOnChange}
+          isError={isError}
+        />
+        <CustomInput
+          Title="Last name"
+          Id="lastname"
+          Types="text"
+          ErrorText="Lastname name cannot be blank."
+          handleOnChange={handleOnChange}
+          isError={isError}
+        />
+        <CustomInput
+          Title="Username"
+          Id="username"
+          Types="text"
+          ErrorText="This username is already taken. Please choose another one."
+          handleOnChange={handleOnChange}
+          isError={isError}
+        />
+      </div>
+    </form>
   );
 };
 
