@@ -85,7 +85,7 @@ export const Container = () => {
 
     setErrors(newErrors);
 
-    // If there are errors in the current step, prevent progression
+
     if (Object.values(newErrors).some((error) => error)) {
       console.log("Error: Some fields are empty.");
       return;
