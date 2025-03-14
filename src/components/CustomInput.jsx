@@ -7,7 +7,7 @@ export const CustomInput = ({
   className,
   Id,
   name,
-  isError,
+  errors,
   handleOnChange,
 }) => {
   return (
@@ -33,11 +33,11 @@ export const CustomInput = ({
           border-[#8B8E95] 
           rounded-[8px]  
           p-3
-          ${isError ? "border-red-500" : ""}
+          ${errors ? "border-red-500" : ""}
         ` + className
         }
       />
-      {isError ? <InputError ErrorText={ErrorText} /> : null}
+      {errors && <InputError ErrorText={ErrorText} />}
     </div>
   );
 };

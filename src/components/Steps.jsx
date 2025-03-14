@@ -1,43 +1,45 @@
+"use client";
 import { CustomInput } from ".";
 import { CiImageOn } from "react-icons/ci";
 import { InputError } from "./InputError";
-import { use } from "react";
 
-export const FirstStep = ({ handleOnChange, isError }) => {
+import { useState } from "react";
+
+export const FirstStep = ({ handleOnChange, errors }) => {
   return (
     <div className="flex flex-col gap-3">
       <CustomInput
         Title="First name"
         Id="firstName"
-        name={"firstName"}
+        name="firstName"
         Types="text"
         ErrorText="First name cannot be blank."
         handleOnChange={handleOnChange}
-        isError={isError}
+        errors={errors.firstName}
       />
       <CustomInput
         Title="Last name"
         Id="lastName"
-        name={"lastName"}
+        name="lastName"
         Types="text"
-        ErrorText="Lastname name cannot be blank."
+        ErrorText="Last name cannot be blank."
         handleOnChange={handleOnChange}
-        isError={isError}
+        errors={errors.lastName}
       />
       <CustomInput
         Title="Username"
         Id="userName"
-        name={"userName"}
+        name="userName"
         Types="text"
-        ErrorText="This username is already taken. Please choose another one."
+        ErrorText="Username cannot be blank."
         handleOnChange={handleOnChange}
-        isError={isError}
+        errors={errors.userName}
       />
     </div>
   );
 };
 
-export const SecondStep = ({ handleOnChange, isError }) => {
+export const SecondStep = ({ handleOnChange, errors }) => {
   return (
     <div className="flex flex-col gap-3">
       <CustomInput
@@ -46,7 +48,7 @@ export const SecondStep = ({ handleOnChange, isError }) => {
         Id="email"
         Types="email"
         handleOnChange={handleOnChange}
-        isError={isError}
+        errors={errors.email}
         ErrorText="Please provide a valid email address."
       />
       <CustomInput
@@ -55,7 +57,7 @@ export const SecondStep = ({ handleOnChange, isError }) => {
         name="phoneNumber"
         Types="tel"
         handleOnChange={handleOnChange}
-        isError={isError}
+        errors={errors.phoneNumber}
         ErrorText="Please enter a valid phone number."
       />
       <CustomInput
@@ -64,15 +66,15 @@ export const SecondStep = ({ handleOnChange, isError }) => {
         name="password"
         Types="password"
         handleOnChange={handleOnChange}
-        isError={isError}
+        errors={errors.password}
         ErrorText="Password must include letters and numbers."
       />
       <CustomInput
         Title="Confirm password"
         Id="confirmpassword"
-        name={"confirmPassword"}
+        name="confirmPassword"
         handleOnChange={handleOnChange}
-        isError={isError}
+        errors={errors.confirmPassword}
         Types="password"
         ErrorText="Passwords do not match. Please try again."
       />
@@ -80,7 +82,19 @@ export const SecondStep = ({ handleOnChange, isError }) => {
   );
 };
 
-export const ThirdStep = ({ handleOnChange, isError }) => {
+export const ThirdStep = ({ handleOnChange, errors, formValues }) => {
+  const [imagePreview, setImagePreview] = useState(null);
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+
+    if (file) {
+      setImagePreview(URL.createObjectURL(file));
+    }
+
+    handleOnChange(event);
+  };
+
   return (
     <div className="flex flex-col gap-3">
       <CustomInput
@@ -89,28 +103,43 @@ export const ThirdStep = ({ handleOnChange, isError }) => {
         name="dateOfBirth"
         Types="date"
         handleOnChange={handleOnChange}
-        isError={isError}
+        errors={errors.dateOfBirth}
         ErrorText="Please select a date."
       />
+
+      {/* File input for profile image */}
       <div className="relative gap-3 flex flex-col">
         <input
           type="file"
           id="img"
           name="profileImage"
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+          onChange={handleImageChange}
         />
         <div className="h-[180px] bg-gray-200 border-none flex flex-col items-center justify-center gap-2">
-          <div className="p-2 bg-white rounded-full">
-            <CiImageOn className="text-black size-3" />
-          </div>
-          <label
-            htmlFor="img"
-            className="cursor-pointer text-black text-[14px] font-medium"
-          >
-            Add image
-          </label>
+          {imagePreview ? (
+            <img
+              src={imagePreview}
+              alt="Profile"
+              className="w-[416px] h-[180px] object-cover "
+            />
+          ) : (
+            <div className="flex flex-col items-center">
+              <div className="text-black size-3 p-2 bg-white rounded-full">
+                <CiImageOn />
+              </div>
+              <label
+                htmlFor="img"
+                className="cursor-pointer text-black text-[14px] font-medium"
+              >
+                Add image
+              </label>
+            </div>
+          )}
         </div>
-        <InputError ErrorText="Image cannot be blank" />
+        {errors.profileImage && (
+          <InputError ErrorText="Image cannot be blank" />
+        )}
       </div>
     </div>
   );
