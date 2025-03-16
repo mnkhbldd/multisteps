@@ -6,7 +6,7 @@ import { initialFormValues } from "@/utils/functions";
 
 export const Container = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
-  const [count, setCount] = useState(3);
+  const [count, setCount] = useState(0);
 
   const [errors, setErrors] = useState({
     firstName: false,
