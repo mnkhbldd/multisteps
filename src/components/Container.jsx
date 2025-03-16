@@ -1,12 +1,12 @@
 "use client";
 import { useState } from "react";
 import { CustomInput, CustomButton } from ".";
-import { FirstStep, SecondStep, ThirdStep } from "./Steps";
+import { FirstStep, FourthStep, SecondStep, ThirdStep } from "./Steps";
 import { initialFormValues } from "@/utils/functions";
 
 export const Container = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(3);
 
   const [errors, setErrors] = useState({
     firstName: false,
@@ -20,7 +20,7 @@ export const Container = () => {
     profileImage: false,
   });
 
-  const CurrentSteps = [FirstStep, SecondStep, ThirdStep][count];
+  const CurrentSteps = [FirstStep, SecondStep, ThirdStep, FourthStep][count];
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -33,7 +33,7 @@ export const Container = () => {
   };
 
   const handleForward = () => {
-    if (count >= 2) return;
+    if (count >= 3) return;
 
     let newErrors = {};
 
@@ -56,7 +56,6 @@ export const Container = () => {
         newErrors.confirmPassword = true;
       }
       if (
-        formValues.password.length < 8 ||
         !/[A-Za-z]/.test(formValues.password) ||
         !/\d/.test(formValues.password)
       ) {
@@ -84,7 +83,6 @@ export const Container = () => {
     }
 
     setErrors(newErrors);
-
 
     if (Object.values(newErrors).some((error) => error)) {
       console.log("Error: Some fields are empty.");
