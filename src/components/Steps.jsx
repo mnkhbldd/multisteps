@@ -158,11 +158,5 @@ export const ThirdStep = ({ handleOnChange, errors }) => {
 };
 
 export const FourthStep = () => {
-  return (
-    <div className="w-full h-full">
-      <p className="text-[26px] text-black font-semibold m-0">
-        Thank you for fill the document
-      </p>
-    </div>
-  );
+  return <div></div>;
 };
