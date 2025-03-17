@@ -121,7 +121,7 @@ export const ThirdStep = ({ handleOnChange, errors }) => {
             <img
               src={imagePreview}
               alt="Profile"
-              className="w-[416px] h-[180px]  object-cover"
+              className="w-[416px] h-[180px]  object-contain"
             />
           ) : (
             <div className="flex flex-col items-center">
