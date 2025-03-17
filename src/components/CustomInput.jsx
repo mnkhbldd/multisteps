@@ -7,6 +7,7 @@ export const CustomInput = ({
   className,
   Id,
   name,
+  value,
   errors,
   handleOnChange,
 }) => {
@@ -21,6 +22,7 @@ export const CustomInput = ({
         placeholder={Title}
         id={Id}
         name={name}
+        value={value}
         onChange={handleOnChange}
         className={
           `

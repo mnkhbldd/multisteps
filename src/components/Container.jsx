@@ -114,7 +114,11 @@ export const Container = () => {
         <div className="flex flex-col gap-7">
           {count == 3 ? <SecondHeader /> : <Header />}
 
-          <CurrentSteps handleOnChange={handleOnChange} errors={errors} />
+          <CurrentSteps
+            handleOnChange={handleOnChange}
+            errors={errors}
+            formValues={formValues}
+          />
         </div>
         <CustomButton
           handleForward={handleForward}

@@ -5,7 +5,7 @@ import { InputError } from "./InputError";
 
 import { useState } from "react";
 
-export const FirstStep = ({ handleOnChange, errors }) => {
+export const FirstStep = ({ handleOnChange, errors, formValues }) => {
   return (
     <div className="flex flex-col gap-3">
       <CustomInput
@@ -13,6 +13,7 @@ export const FirstStep = ({ handleOnChange, errors }) => {
         Id="firstName"
         name="firstName"
         Types="text"
+        value={formValues.firstName}
         ErrorText="First name cannot be blank."
         handleOnChange={handleOnChange}
         errors={errors.firstName}
@@ -22,6 +23,7 @@ export const FirstStep = ({ handleOnChange, errors }) => {
         Id="lastName"
         name="lastName"
         Types="text"
+        value={formValues.lastName}
         ErrorText="Last name cannot be blank."
         handleOnChange={handleOnChange}
         errors={errors.lastName}
@@ -30,6 +32,7 @@ export const FirstStep = ({ handleOnChange, errors }) => {
         Title="Username"
         Id="userName"
         name="userName"
+        value={formValues.userName}
         Types="text"
         ErrorText="Username cannot be blank."
         handleOnChange={handleOnChange}
@@ -39,7 +42,7 @@ export const FirstStep = ({ handleOnChange, errors }) => {
   );
 };
 
-export const SecondStep = ({ handleOnChange, errors }) => {
+export const SecondStep = ({ handleOnChange, errors, formValues }) => {
   return (
     <div className="flex flex-col gap-3">
       <CustomInput
@@ -47,6 +50,7 @@ export const SecondStep = ({ handleOnChange, errors }) => {
         name="email"
         Id="email"
         Types="email"
+        value={formValues.email}
         handleOnChange={handleOnChange}
         errors={errors.email}
         ErrorText="Please provide a valid email address."
@@ -56,6 +60,7 @@ export const SecondStep = ({ handleOnChange, errors }) => {
         Id="phonenumber"
         name="phoneNumber"
         Types="tel"
+        value={formValues.phoneNumber}
         handleOnChange={handleOnChange}
         errors={errors.phoneNumber}
         ErrorText="Please enter a valid phone number."
@@ -65,6 +70,7 @@ export const SecondStep = ({ handleOnChange, errors }) => {
         Id="password"
         name="password"
         Types="password"
+        value={formValues.password}
         handleOnChange={handleOnChange}
         errors={errors.password}
         ErrorText="Password must include letters and numbers."
@@ -73,6 +79,7 @@ export const SecondStep = ({ handleOnChange, errors }) => {
         Title="Confirm password"
         Id="confirmpassword"
         name="confirmPassword"
+        value={formValues.confirmPassword}
         handleOnChange={handleOnChange}
         errors={errors.confirmPassword}
         Types="password"
@@ -82,7 +89,7 @@ export const SecondStep = ({ handleOnChange, errors }) => {
   );
 };
 
-export const ThirdStep = ({ handleOnChange, errors }) => {
+export const ThirdStep = ({ handleOnChange, errors, formValues }) => {
   const [imagePreview, setImagePreview] = useState(null);
 
   const handleImageChange = (event) => {
@@ -102,6 +109,7 @@ export const ThirdStep = ({ handleOnChange, errors }) => {
         Id="dateofbirth"
         name="dateOfBirth"
         Types="date"
+        value={formValues.dateOfBirth}
         handleOnChange={handleOnChange}
         errors={errors.dateOfBirth}
         ErrorText="Please select a date."
@@ -125,7 +133,7 @@ export const ThirdStep = ({ handleOnChange, errors }) => {
             />
           ) : (
             <div className="flex flex-col items-center">
-              <div className="bg-white rounded-full p-3 flex items-center justify-center w-10  h-10  ">
+              <div className="bg-white rounded-full p-3 flex items-center justify-center w-10 h-10">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="12"
@@ -139,7 +147,6 @@ export const ThirdStep = ({ handleOnChange, errors }) => {
                   />
                 </svg>
               </div>
-
               <label
                 htmlFor="img"
                 className="cursor-pointer text-black text-[14px] font-medium"
