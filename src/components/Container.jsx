@@ -101,8 +101,12 @@ export const Container = () => {
 
   return (
     <div>
-      {/* Container  */}
-      <div
+      <motion.div
+        key={count}
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -100 }}
+        transition={{ duration: 1 }}
         className={`w-[480px] h-fit bg-white flex flex-col justify-between p-8 rounded-[8px] ${
           count == 3 ? "" : "min-h-[655px]"
         }`}
@@ -117,8 +121,7 @@ export const Container = () => {
           handleBackward={handleBackward}
           count={count}
         />
-      </div>
-      {/* Container finished */}
+      </motion.div>
     </div>
   );
 };
